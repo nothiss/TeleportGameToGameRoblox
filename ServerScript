@@ -1,0 +1,19 @@
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+
+local SPTT = 123456789 -- Replace with PlaceId you want to Teleport to
+
+script.Parent.Touched:Connect(function(hit)
+	if hit.Parent and hit.Parent:FindFirstChild("Humanoid") then
+		local player = Players:GetPlayerFromCharacter(hit.Parent)
+		if not player:FindFirstChild("IsTeleporting") then
+			local IsTeleporting = Instance.new("StringValue")
+			IsTeleporting.Name = "IsTeleporting"
+			IsTeleporting.Parent = player
+			print("EverythingAoK")
+			local plr = Players:GetPlayerByUserId(player.UserId)
+			TeleportService:Teleport(SPTT, plr)
+			print("AoK")
+		end
+	end
+end)
